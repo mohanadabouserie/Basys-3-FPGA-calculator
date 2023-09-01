@@ -1,0 +1,55 @@
+module sevenSeg(input en, input[3:0] x, input[1:0] sel, output reg [7:0]seg, output reg [3:0] anoact,
+input target);
+always @(en,x)
+begin
+if(en==1)
+begin
+case(sel)
+03:anoact=4'b0111;
+02:anoact=4'b1011;
+01:anoact=4'b1101;
+00:anoact=4'b1110;
+endcase
+end
+else
+anoact=4'b1111;
+if(target == 0 && sel == 2)
+begin
+case(x)
+00:seg=8'b00000010;
+01:seg=8'b10011110;
+02:seg=8'b00100100;
+03:seg=8'b00001100;
+04:seg=8'b10011000;
+05:seg=8'b01001000;
+06:seg=8'b01000000;
+07:seg=8'b00011110;
+08:seg=8'b00000000;09:seg=8'b00001000;
+10:seg=8'b11111100;
+11:seg=8'b11111110;
+12:seg=8'b00000010;
+13:seg=8'b00010000;
+14:seg=8'b01100000;
+endcase
+end
+else
+begin
+case(x)
+00:seg=8'b00000011;
+01:seg=8'b10011111;
+02:seg=8'b00100101;
+03:seg=8'b00001101;
+04:seg=8'b10011001;
+05:seg=8'b01001001;
+06:seg=8'b01000001;
+07:seg=8'b00011111;
+08:seg=8'b00000001;
+09:seg=8'b00001001;
+10:seg=8'b11111101;
+11:seg=8'b11111111;
+12:seg=8'b00000011;
+13:seg=8'b00010001;
+14:seg=8'b01100001;
+endcase
+end
+endendmodule
